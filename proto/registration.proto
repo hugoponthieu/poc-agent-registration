@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package scheduler;
+package registration;
 
 message RegisterAgentResponse {
     string id = 1;
@@ -20,5 +20,4 @@ message Empty {}
 
 service Agent {
     rpc RegisterAgent (Health) returns (RegisterAgentResponse);
-    rpc ReportHealthStatus (stream HealthStatus) returns (Empty);
 }

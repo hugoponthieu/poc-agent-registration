@@ -5,6 +5,8 @@ use proto::{
 use tonic::{transport::Server, Response};
 mod proto {
     tonic::include_proto!("registration");
+    pub(crate) const FILE_DESCRIPTOR_SET: &[u8] =
+        tonic::include_file_descriptor_set!("registration_descriptor");
 }
 
 #[derive(Debug, Default)]
@@ -28,7 +30,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let reg = RegistrationService::default();
     Server::builder()
-        .add_service(AgentServer::new(reg))  // Corrected line
+        .add_service(AgentServer::new(reg)) // Corrected line
         .serve(addr)
         .await?;
 
